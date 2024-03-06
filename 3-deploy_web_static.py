@@ -16,7 +16,7 @@ def do_pack():
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
         archive_name = "web_static_{}.tgz".format(timestamp)
         local("tar -cvzf versions/{} web_static".format(archive_name))
-        return ("versions/{}", archive_name)
+        return ("versions/{}".format(archive_name))
 
     except Exception:
         return None
@@ -50,7 +50,7 @@ def do_deploy(archive_path):
 
 
 def deploy():
-    """based on the file 2-do_deploy_web_static.py) that creates and distributes
+    """based on the file 2-do_deploy_web_static.py that creates and distributes
     an archive to your web servers"""
     archive = do_pack()
     if archive is None:
