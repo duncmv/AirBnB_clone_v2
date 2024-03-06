@@ -8,6 +8,7 @@ import os.path
 env.user = 'ubuntu'
 env.hosts = ['18.207.112.170', '100.27.12.171']
 
+
 def do_deploy(archive_path):
     """distributes an archive to your web servers"""
 

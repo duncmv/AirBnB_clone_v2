@@ -53,4 +53,7 @@ def deploy():
     """based on the file 2-do_deploy_web_static.py) that creates and distributes
     an archive to your web servers"""
     archive = do_pack()
-    return do_deploy(archive)
+    if archive is None:
+        return False
+    dep = do_deploy(archive)
+    return dep
