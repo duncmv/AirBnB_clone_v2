@@ -9,6 +9,7 @@ env.user = 'ubuntu'
 env.hosts = ['18.207.112.170', '100.27.12.171']
 
 
+@runs_once
 def do_pack():
     """Generates a .tgz archive from the contents of the web_static folder"""
     try:
@@ -30,18 +31,19 @@ def do_deploy(archive_path):
             put(archive_path, "/tmp/")
             fileName = archive_path.split("/")[1]
             folderName = fileName.split(".")[0]
-            sudo("mkdir -p /data/web_static/releases/{}/".format(folderName))
-            sudo("tar -xzf /tmp/{} -C /data/web_static/releases/{}/".format(
-                fileName, folderName))
-            sudo("rm /tmp/{}".format(fileName))
-            sudo("mv /data/web_static/releases/{}/web_static/*\
+            run("sudo mkdir -p /data/web_static/releases/{}/\
+                ".format(folderName))
+            run("sudo tar -xzf /tmp/{} -C /data/web_static/releases/{}/\
+                ".format(fileName, folderName))
+            run(" sudo rm /tmp/{}".format(fileName))
+            run(" sudo mv /data/web_static/releases/{}/web_static/*\
                   /data/web_static/releases/{}/".format(folderName,
                                                         folderName))
-            sudo("rm -rf /data/web_static/releases/{}/web_static\
+            run("sudo rm -rf /data/web_static/releases/{}/web_static\
                  ".format(folderName))
-            sudo("rm -rf /data/web_static/current")
-            sudo("ln -s /data/web_static/releases/{}/ /data/web_static/current\
-                 ".format(folderName))
+            run("sudo rm -rf /data/web_static/current")
+            run("sudo ln -s /data/web_static/releases/{}/ \
+                /data/web_static/current".format(folderName))
             return True
         except Exception:
             return False
