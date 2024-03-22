@@ -40,12 +40,14 @@ class Place(BaseModel, Base):
                                  viewonly=False)
 
     else:
-        from models import storage
+
         @property
         def reviews(self):
+            from models import storage
             """getter function"""
             my_reviews = []
             all_reviews = list(storage.all(cls='Review').values())
+
             for review in all_reviews:
                 if review.place_id == self.id:
                     my_reviews.append(review)
@@ -53,12 +55,14 @@ class Place(BaseModel, Base):
 
         @property
         def amenities(self):
+            from models import storage
             """Returns the list of Amenity instances
             based on the attribute amenity_id that contain all
             Amenity.id linked to the place
             """
             amenities = list(storage.all(cls='Amenity').values())
-            return [amnty for amnty in amenities if amnty.id in amenity_ids]
+            return [amnty for amnty in amenities if amnty.id in
+                    self.amenity_ids]
 
         @amenities.setter
         def amenities(self, obj):
@@ -67,7 +71,7 @@ class Place(BaseModel, Base):
             """
             from models.amenity import Amenity
             if isinstance(obj, Amenity):
-                amenity_ids.append(obj.id)
+                self.amenity_ids.append(obj.id)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
