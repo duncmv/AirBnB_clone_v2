@@ -8,15 +8,18 @@ app = Flask(__name__)
 
 
 
-@app.route('/states_list')
-def states(states):
+@app.route('/states_list', strict_slashes=False)
+def states():
     """retrieve states"""
-    states = storage.all(State)
-    states.sort(key=operator.itemgetter('name'))
+    states= storage.all('State')
     return render_template('7-states_list.html', states=states)
 
 
 @app.teardown_appcontext
-def done():
+def teardown(err):
     """close session"""
     storage.close()
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
