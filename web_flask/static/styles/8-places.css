@@ -39,6 +39,7 @@ article {
     float: left;
     max-width: 75%;
 }
+
 .price_by_night {
 	display: flex;
 	justify-content: center;
@@ -80,7 +81,7 @@ article {
 
 .user {
 	margin-top: 5px;
-	margin-bottom: 5px;	
+	margin-bottom: 20px;	
 }
 
 .description {

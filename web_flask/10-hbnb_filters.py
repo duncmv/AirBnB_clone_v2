@@ -10,7 +10,7 @@ def filters():
     """retrieves states"""
     states = storage.all("State")
     amenities = storage.all("Amenity").values()
-    return render_template('10-hbnb_filters.html', states=states, 
+    return render_template('10-hbnb_filters.html', states=states,
                            amenities=amenities)
 
 

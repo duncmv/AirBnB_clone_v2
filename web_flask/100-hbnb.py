@@ -12,7 +12,7 @@ def hbnb():
     amenities = storage.all("Amenity").values()
     places = storage.all("Place").values()
     users = storage.all("User").values()
-    return render_template('100-hbnb.html', states=states, 
+    return render_template('100-hbnb.html', states=states,
                            amenities=amenities, places=places,
                            users=users)
 
