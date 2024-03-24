@@ -43,7 +43,11 @@
 	border: 1px solid #DDDDDD;
 	border-radius: 4px;
 }
-
+.popover li {
+    padding-left: 15px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
 li {
     padding-left: 45px;
 }
