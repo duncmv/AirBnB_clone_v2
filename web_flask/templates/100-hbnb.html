@@ -63,12 +63,7 @@
                                 <p>{{- place.number_bathrooms }} Bathroom</p>
                             </div>
                         </div>
-                        <div class="user"><b>Owner</b>: {% for user in users%}
-                                                            {% if user.id == place.user_id %}
-                                                                {{ user.first_name }} {{ user.last_name}}
-                                                            {% endif %}
-                                                        {% endfor %}
-                        </div>
+                        <div class="user"><b>Owner</b>: {{ place.user.first_name }} {{ place.user.last_name }}</div>
                         <div class="description">
                             {{ place.description  | safe }}
                         </div>
